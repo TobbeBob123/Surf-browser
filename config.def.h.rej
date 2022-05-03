@@ -1,0 +1,10 @@
+--- config.def.h	Tue Jun 08 09:06:10 2010 +0200
++++ config.def.h	Wed Sep 28 14:15:32 2011 +0100
+@@ -5,6 +5,7 @@
+ static char *stylefile      = ".surf/style.css";
+ static char *scriptfile     = ".surf/script.js";
+ static char *cookiefile     = ".surf/cookies.txt";
++static char *downdir        = "/tmp";
+ static time_t sessiontime   = 3600;
+ #define NOBACKGROUND 0
+ 

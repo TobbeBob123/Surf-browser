@@ -6,8 +6,9 @@ static char *styledir       = "~/.config/surf/styles/";
 static char *certdir        = "~/.config/surf/certificates/";
 static char *cachedir       = "~/.config/surf/cache/";
 static char *cookiefile     = "~/.config/surf/cookies.txt";
+static char *downdir        = "/tmp";
 static char *historyfile    = "~/.config/surf/history.txt";
-static char *searchurl      = "duckduckgo.com/?q=%s";
+static char *searchurl      = "https://startpage.com/";
 
 /* Webkit default features */
 /* Highest priority value will be used.
@@ -22,7 +23,7 @@ static Parameter defconfig[ParameterLast] = {
 	[AccessWebcam]        =       { { .i = 0 },     },
 	[Certificate]         =       { { .i = 0 },     },
 	[CaretBrowsing]       =       { { .i = 0 },     },
-	[CookiePolicies]      =       { { .v = "@Aa" }, },
+	[CookiePolicies]      =       { { .v = "@a" }, },
 	[DefaultCharset]      =       { { .v = "UTF-8" }, },
 	[DiskCache]           =       { { .i = 1 },     },
 	[DNSPrefetch]         =       { { .i = 0 },     },
@@ -72,9 +73,8 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 #define SETPROP(r, s, p) { \
         .v = (const char *[]){ "/bin/sh", "-c", \
              "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
-             "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\" && cat ~/.surf/bookmarks)\" " \
-             "| dmenu -l 10 -p \"$4\" -w $1)\" && " \
-             "xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
+             "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\")\" " \
+             "| dmenu -p \"$4\" -w $1)\" && xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
              "surf-setprop", winid, r, s, p, NULL \
         } \
 }
@@ -136,12 +136,7 @@ p, winid, NULL } }
  */
 static SiteSpecific styles[] = {
 	/* regexp               file in $styledir */
-	/* { ".*",                     "default.css" }, */
-	{ ".*archlinux.org.*",      "archlinux.css" },
-	{ ".*arcolinux.info.*",     "arcolinux-info.css" },
-	{ ".*arcolinuxforum.com.*", "arcolinuxforum.css" },
-	{ ".*suckless.org.*",       "suckless.css" },
-	{ ".*wikipedia.org.*",      "wikipedia.css" },
+	{ ".*",                     "default.css" },
 };
 
 /* certificates */
